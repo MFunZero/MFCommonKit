@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MFCommonKit_Example' do
+  pod 'MFCommonKit', :path => '../'
+
+  target 'MFCommonKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
