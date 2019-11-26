@@ -29,20 +29,22 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
+  s.swift_version = '5.0'
 
-#  s.source_files = 'MFCommonKit/Classes/**/*'
-  
-  s.subspec 'Tool' do |ss|
-    ss.source_files = 'MFCommonKit/Classes/Tool/*'
-  end
-  
-  s.subspec 'Base' do |ss|
-    ss.source_files = 'MFCommonKit/Classes/Base/*'
-  end
-  
-  s.subspec 'Base' do |ss|
-    ss.source_files = 'MFCommonKit/Classes/Category/*'
-  end
+  s.source_files = 'MFCommonKit/Classes/**/*'
+#  s.dependency = 'Alamofire'
+
+#  s.subspec 'Tool' do |ss|
+#    ss.source_files = 'MFCommonKit/Classes/Tool/*'
+#  end
+#
+#  s.subspec 'Base' do |ss|
+#    ss.source_files = 'MFCommonKit/Classes/Base/*'
+#  end
+#
+#  s.subspec 'Base' do |ss|
+#    ss.source_files = 'MFCommonKit/Classes/Category/*'
+#  end
   # s.resource_bundles = {
   #   'MFCommonKit' => ['MFCommonKit/Assets/*.png']
   # }
