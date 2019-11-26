@@ -93,6 +93,9 @@
 		607FACD21AFB9204008FA782 /* Example for MFCommonKit */ = {
 			isa = PBXGroup;
 			children = (
+				73FE28CB238CF9DC00E603EE /* Base */,
+				73FE28C9238CF9DC00E603EE /* Category */,
+				73FE28CA238CF9DC00E603EE /* Tool */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -137,6 +140,30 @@
 				288C68864639B9D7ECF21F66 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		73FE28C9238CF9DC00E603EE /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Category;
+			path = ../../MFCommonKit/Classes/Category;
+			sourceTree = "<group>";
+		};
+		73FE28CA238CF9DC00E603EE /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tool;
+			path = ../../MFCommonKit/Classes/Tool;
+			sourceTree = "<group>";
+		};
+		73FE28CB238CF9DC00E603EE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Base;
+			path = ../../MFCommonKit/Classes/Base;
 			sourceTree = "<group>";
 		};
 		8F5C8FF07F31B14E94E7C76A /* Pods */ = {
