@@ -30,8 +30,19 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'MFCommonKit/Classes/**/*'
+#  s.source_files = 'MFCommonKit/Classes/**/*'
   
+  s.subspec 'Tool' do |ss|
+    ss.source_files = 'MFCommonKit/Classes/Tool/*'
+  end
+  
+  s.subspec 'Base' do |ss|
+    ss.source_files = 'MFCommonKit/Classes/Base/*'
+  end
+  
+  s.subspec 'Base' do |ss|
+    ss.source_files = 'MFCommonKit/Classes/Category/*'
+  end
   # s.resource_bundles = {
   #   'MFCommonKit' => ['MFCommonKit/Assets/*.png']
   # }
