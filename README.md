@@ -22,7 +22,7 @@ pod 'MFCommonKit'
 
 ## Author
 
-MFunzero, 2469209357@qq.com
+MFun, 2469209357@qq.com
 
 ## License
 
