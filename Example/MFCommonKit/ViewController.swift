@@ -22,10 +22,12 @@ class ViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        MFHttpManager.configAuthentication(cerfileName: "star.zdz.la", p12fileNameAndPwd: ["star.zdz.la":"123"])
-        MFHttpManager.sharedInstance.sendRequest(urlString: "staff/Staff/pwdLogin", requestMethod: .POST,paras: ["phone":"15639983111","password":"qwer1234"]) { (code, result, success) in
+//        MFHttpManager.configAuthentication(cerfileName: "*", p12fileNameAndPwd: ["*":"123"])
+        MFHttpManager.sharedInstance.sendRequest(urlString: "", requestMethod: .POST,paras: ["phone":"15639983111","password":"qwer1234"]) { (code, result, success) in
             print("\(code):\(result)")
+            print(String.randomStr(len: 19))
         }
+
     }
     
 }
