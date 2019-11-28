@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MFCommonKit'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'common tools.'
 
 # This description is used to generate tags and improve search results.
@@ -30,8 +30,8 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
-  s.dependency 'Alamofire'
-  s.dependency 'HandyJSON'
+#  s.dependency 'Alamofire'
+#  s.dependency 'HandyJSON'
 #  s.source_files = 'MFCommonKit/Classes/**/*'
   
 #
@@ -45,8 +45,8 @@ TODO: Add long description of the pod here.
   
   s.subspec 'Tool' do |ss|
     ss.source_files = 'MFCommonKit/Classes/Tool/**/*'
-#    ss.dependency 'Alamofire'
-#    ss.dependency 'HandyJSON'
+    ss.dependency 'Alamofire'
+    ss.dependency 'HandyJSON'
   end
   
   # s.resource_bundles = {

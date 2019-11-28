@@ -11,20 +11,20 @@ import Alamofire
 import HandyJSON
 
 //定义一个结构体，存储认证相关信息
-struct IdentityAndTrust {
+public struct IdentityAndTrust {
     var identityRef:SecIdentity
     var trust:SecTrust
     var certArray:AnyObject
 }
 
-enum MFRequestMethodType {
+public enum MFRequestMethodType {
     case GET
     case POST
     case PUT
     case DELETE
 }
 
-enum ResponseResultType: String {
+public enum ResponseResultType: String {
     case Success = "请求成功"
     case Failed = "请求失败"
     /// code 不存在
@@ -37,20 +37,20 @@ enum ResponseResultType: String {
     case Unknown3 = "未知错误：013"
 }
 
-enum MFSplitType {
+public enum MFSplitType {
     case img,video,audio,file
 } 
 
 let SplitUploadMaxSize = 1024 * 1024 
 
-class MFHttpManager {
+public class MFHttpManager {
     fileprivate static var trustFileNameOfP12: String = "star.zdz.la"
     fileprivate static var trustFilePwdOfP12: String = "123"
     fileprivate static var trustFileNameOfCer: String = "star.zdz.la"
     fileprivate static var enableHttps: Bool = false
  
     fileprivate var resultDict:[String:Any] = [:]
-    static let sharedInstance = MFHttpManager()
+    public static let sharedInstance = MFHttpManager()
     private let MFTimeout: TimeInterval = 30
     private lazy var manager: SessionManager = {
         let config: URLSessionConfiguration = URLSessionConfiguration.default
@@ -113,7 +113,7 @@ class MFHttpManager {
     }
     
     //获取客户端证书相关信息
-    func extractIdentity() -> IdentityAndTrust? {
+    private func extractIdentity() -> IdentityAndTrust? {
         var identityAndTrust:IdentityAndTrust!
         var securityError:OSStatus = errSecSuccess
         
@@ -152,7 +152,7 @@ class MFHttpManager {
     
     
     ////发送请求
-    func sendRequest(urlString: String,requestMethod: MFRequestMethodType = .GET, paras: [String: Any]? = nil, requsetHeaders: HTTPHeaders? = nil, isShowHUD: Bool? = true, finished: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())){
+    public func sendRequest(urlString: String,requestMethod: MFRequestMethodType = .GET, paras: [String: Any]? = nil, requsetHeaders: HTTPHeaders? = nil, isShowHUD: Bool? = true, finished: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())){
         var method: HTTPMethod {
             switch requestMethod {
             case .GET:
@@ -190,7 +190,7 @@ class MFHttpManager {
         print("\(request):\(String(describing: paras))")
         
     }    
-    func uploadWithPara(urlString: String,requestHeaders:[String:String]?,file:Data,fileName:String,completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())) {
+    public func uploadWithPara(urlString: String,requestHeaders:[String:String]?,file:Data,fileName:String,completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())) {
         
         guard let headers:[String:String] = requestHeaders else {
             return
@@ -216,7 +216,7 @@ class MFHttpManager {
     }
     
     //单片上传
-    func uploadWithSplit(urlString: String,headers:[String:String]?,parameters:[String:Any],file:Data,fileName:String,mimeType:String = "image/png", progressBlock:((Double) -> ())? = nil, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->()) ){
+    public func uploadWithSplit(urlString: String,headers:[String:String]?,parameters:[String:Any],file:Data,fileName:String,mimeType:String = "image/png", progressBlock:((Double) -> ())? = nil, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->()) ){
         
         Alamofire.upload(multipartFormData: { (multiPart) in
             multiPart.append(file, withName: "file", fileName: fileName, mimeType: mimeType)
@@ -257,7 +257,7 @@ class MFHttpManager {
     }
     
     /// 泛型解析数据转换为特定类型
-    static func uploadWithSplitCommon<T:HandyJSON>(urlString: String,uniqueTag:String? = nil, requsetHeaders: [String:String]? = nil,paras:[String:Any]?,splitype:MFSplitType? = MFSplitType.img, fileExt: String, file: Data? = nil, responseType: T.Type, isShowHUD: Bool? = true, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())){
+    public static func uploadWithSplitCommon<T:HandyJSON>(urlString: String,uniqueTag:String? = nil, requsetHeaders: [String:String]? = nil,paras:[String:Any]?,splitype:MFSplitType? = MFSplitType.img, fileExt: String, file: Data? = nil, responseType: T.Type, isShowHUD: Bool? = true, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())){
         guard let splitType = splitype, let fileData = file else {
             print("切片上传，未读取到相应文件")
             return
@@ -335,7 +335,7 @@ class MFHttpManager {
  
 extension MFHttpManager {
     
-    static func configAuthentication(cerfileName: String?,p12fileNameAndPwd: [String:String]?) {
+    public static func configAuthentication(cerfileName: String?,p12fileNameAndPwd: [String:String]?) {
         
         if let cer = cerfileName {
             MFHttpManager.trustFileNameOfCer = cer
@@ -353,7 +353,7 @@ extension MFHttpManager {
 
 extension String{
     static let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    static func randomStr(len : Int) -> String{
+    public static func randomStr(len : Int) -> String{
         var ranStr = ""
         for _ in 0..<len {
             let index = Int(arc4random_uniform(UInt32(random_str_characters.count)))
