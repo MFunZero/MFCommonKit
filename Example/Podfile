@@ -3,7 +3,7 @@ use_frameworks!
 target 'MFCommonKit_Example' do
   pod 'MFCommonKit', :path => '../../MFCommonKit'
   pod 'Alamofire'
-  pod 'HandyJSON' 
+  pod 'HandyJSON'
 
   target 'MFCommonKit_Tests' do
     inherit! :search_paths

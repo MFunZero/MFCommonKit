@@ -44,9 +44,9 @@ public enum MFSplitType {
 let SplitUploadMaxSize = 1024 * 1024 
 
 public class MFHttpManager {
-    fileprivate static var trustFileNameOfP12: String = "star.zdz.la"
+    fileprivate static var trustFileNameOfP12: String = " "
     fileprivate static var trustFilePwdOfP12: String = "123"
-    fileprivate static var trustFileNameOfCer: String = "star.zdz.la"
+    fileprivate static var trustFileNameOfCer: String = " "
     fileprivate static var enableHttps: Bool = false
  
     fileprivate var resultDict:[String:Any] = [:]
