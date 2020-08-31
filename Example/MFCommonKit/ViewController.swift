@@ -8,12 +8,13 @@
 
 import UIKit
 import MFCommonKit
+import MFSession
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        MFSession.session.test()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,12 +23,35 @@ class ViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        MFHttpManager.configAuthentication(cerfileName: "*", p12fileNameAndPwd: ["*":"123"])
-        MFHttpManager.sharedInstance.sendRequest(urlString: "", requestMethod: .POST,paras: ["phone":"15639983111","password":"qwer1234"]) { (code, result, success) in
-            print("\(code):\(result)")
-            print(String.randomStr(len: 19))
+        
+        
+        
+        let comment: AppCommont = """
+        See \(issue: 123) where \(account: "alisoftware") explains the steps to reproduce.
+        """
+        print(comment)
+        
+        let description: AppCommont = "\(issue: 11)"
+        print(description)
+        
+        enum Result<Value, Error> {
+            case success(Value)
+            case failure(Error)
         }
+         
+        let result = Result<String, Any>.failure("sss")
+        print(result)
+//        MFHttpManager.configAuthentication(cerfileName: "star.zdz.la", p12fileNameAndPwd: ["star.zdz.la":"123"])
+//        MFHttpManager.sharedInstance.sendRequest(urlString: "https://edurefactor-api.zdz.la/staff/StaffLogin/login", requestMethod: .POST,paras: ["phone":"15639983111","password":"qwer1234"]) { (code, result, success) in
+//            print("\(code):\(result)")
+//        }
 
     }
     
+}
+
+extension MFSession {
+    func test() {
+        print("vc.test")
+    }
 }

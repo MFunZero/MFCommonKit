@@ -1,8 +1,11 @@
+platform :ios, '10.1'
+source 'https://github.com/CocoaPods/Specs.git'
+
 use_frameworks!
 
 target 'MFCommonKit_Example' do
   pod 'MFCommonKit', :path => '../../MFCommonKit'
-  pod 'Alamofire'
+#  pod 'Alamofire', '~> 5.0'
   pod 'HandyJSON'
 
   target 'MFCommonKit_Tests' do
@@ -10,4 +13,10 @@ target 'MFCommonKit_Example' do
 
     
   end
+  target 'MFSession' do
+    inherit! :search_paths
+
+    
+  end
 end
+ 

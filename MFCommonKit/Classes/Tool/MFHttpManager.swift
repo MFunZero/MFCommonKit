@@ -17,7 +17,7 @@ public struct IdentityAndTrust {
     var certArray:AnyObject
 }
 
-public enum MFRequestMethodType {
+public enum MFRequestMethodType: String {
     case GET
     case POST
     case PUT
@@ -43,73 +43,26 @@ public enum MFSplitType {
 
 let SplitUploadMaxSize = 1024 * 1024 
 
-public class MFHttpManager {
+public class MFHttpManager: SessionDelegate {
     fileprivate static var trustFileNameOfP12: String = " "
     fileprivate static var trustFilePwdOfP12: String = "123"
     fileprivate static var trustFileNameOfCer: String = " "
     fileprivate static var enableHttps: Bool = false
- 
+    
     fileprivate var resultDict:[String:Any] = [:]
     public static let sharedInstance = MFHttpManager()
     private let MFTimeout: TimeInterval = 30
-    private lazy var manager: SessionManager = {
+    
+    
+    private lazy var manager: Session = {
         let config: URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = MFTimeout
-        return SessionManager(configuration: config, delegate: SessionDelegate(), serverTrustPolicyManager: nil)
+        return Session(configuration: config, delegate: self, serverTrustManager: nil)
     }()
     
     
     private init() {
-        if MFHttpManager.enableHttps {
-            setHttps()
-        }
-    }
-    
-    private func setHttps() {
-
-        manager.delegate.sessionDidReceiveChallenge = { [weak self] session, challenge in
-            //认证服务器（这里不使用服务器证书认证，只需地址是我们定义的几个地址即可信任）
-            if challenge.protectionSpace.authenticationMethod
-                == NSURLAuthenticationMethodServerTrust
-            {
-                print("服务器认证！")
-            //                let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-            //                return (.useCredential, credential)
-                let serverTrust:SecTrust = challenge.protectionSpace.serverTrust!
-                let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0)!
-                let remoteCertificateData
-                = CFBridgingRetain(SecCertificateCopyData(certificate))!
-                let cerPath = Bundle.main.path(forResource: MFHttpManager.trustFileNameOfCer, ofType: "cer")!
-                let cerUrl = URL(fileURLWithPath:cerPath)
-                let localCertificateData = try! Data(contentsOf: cerUrl)
-
-                if (remoteCertificateData.isEqual(localCertificateData) == true) {
-                    let credential = URLCredential(trust: serverTrust)
-                    challenge.sender?.use(credential, for: challenge)
-                    return (.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!));
-                } else {
-                   return (.cancelAuthenticationChallenge, nil)
-                }
-            }//认证客户端证书
-            else if challenge.protectionSpace.authenticationMethod
-                == NSURLAuthenticationMethodClientCertificate {
-                print("客户端证书认证！")
-                //获取客户端证书相关信息
-                if let identityAndTrust:IdentityAndTrust = self?.extractIdentity() {
-                    let urlCredential:URLCredential = URLCredential(
-                        identity: identityAndTrust.identityRef,
-                        certificates: identityAndTrust.certArray as? [AnyObject],
-                        persistence: URLCredential.Persistence.forSession);
-                    
-                    return (.useCredential, urlCredential);
-                } else {
-                    return (.cancelAuthenticationChallenge, nil)
-                } 
-            }  else { // 其它情况（不接受认证）
-                print("其它情况（不接受认证）")
-                return (.cancelAuthenticationChallenge, nil)
-            }
-        }
+        AF.sessionConfiguration.timeoutIntervalForRequest = MFTimeout
     }
     
     //获取客户端证书相关信息
@@ -169,11 +122,12 @@ public class MFHttpManager {
         let encode: ParameterEncoding = URLEncoding.default
         //请求成功的回调闭包
         let completionCallBack = finished
+        
         //请求
-        let request = manager.request(urlString, method: method, parameters: paras, encoding: encode, headers: requsetHeaders)
+        _ = manager.request(urlString, method: method, parameters: paras, encoding: encode, headers: requsetHeaders)
             .responseJSON {(response) in
-                //请求成功
-                response.result.ifSuccess {
+                switch response.result {
+                case .success:
                     guard let statusCode = response.response?.statusCode,
                         let returnData = response.value as? [String: Any] else {
                             completionCallBack(response.response?.statusCode, response.error, false)
@@ -181,15 +135,15 @@ public class MFHttpManager {
                     }
                     
                     completionCallBack(statusCode, returnData, true)
-                }
-                response.result.ifFailure {
+                case .failure:
                     completionCallBack(response.response?.statusCode, response.error, false)
                 }
         }
         
-        print("\(request):\(String(describing: paras))")
+        print("\(urlString):\(String(describing: paras))")
         
-    }    
+    }
+    
     public func uploadWithPara(urlString: String,requestHeaders:[String:String]?,file:Data,fileName:String,completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())) {
         
         guard let headers:[String:String] = requestHeaders else {
@@ -198,18 +152,16 @@ public class MFHttpManager {
         
         manager.upload(multipartFormData: { (multiPart) in
             multiPart.append(file, withName: "file", fileName: fileName, mimeType: "image/png")
-        }, to: urlString, headers: ["cookie":"\(headers.keys.first!)=\(headers.values.first!)"]) { (result) in
-            switch result {
+        }, to: urlString, headers: HTTPHeaders(headers)).responseJSON { (response) in
+            switch response.result {
             case .failure(let error):
                 completionCallBack(error._code, error, false)
-            case .success(let upload, _, _):
-                upload.responseJSON(completionHandler: { (response) in
-                    guard  let returnData = response.value as? [String: Any],let statusCode = returnData["code"] as? Int else {
-                            completionCallBack(response.response?.statusCode, response.error, false)
-                            return
-                    }
-                    completionCallBack(statusCode, returnData, true)
-                })
+            case .success( _):
+                guard  let returnData = response.value as? [String: Any],let statusCode = returnData["code"] as? Int else {
+                    completionCallBack(response.response?.statusCode, response.error, false)
+                    return
+                }
+                completionCallBack(statusCode, returnData, true)
             }
         }
         print(urlString+":\(headers)")
@@ -218,7 +170,7 @@ public class MFHttpManager {
     //单片上传
     public func uploadWithSplit(urlString: String,headers:[String:String]?,parameters:[String:Any],file:Data,fileName:String,mimeType:String = "image/png", progressBlock:((Double) -> ())? = nil, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->()) ){
         
-        Alamofire.upload(multipartFormData: { (multiPart) in
+        AF.upload(multipartFormData: { (multiPart) in
             multiPart.append(file, withName: "file", fileName: fileName, mimeType: mimeType)
             // 其余参数绑定
             for (key, value) in parameters{
@@ -227,18 +179,12 @@ public class MFHttpManager {
                     print("Para:\(key),\(value) \n")
                 }
             }
-        },to: (urlString), headers: headers) { (result) in
-            switch result {
-            case .failure(let error):
-                completionCallBack(error._code, error, false)
-            case .success(let upload, _, _):
-                upload.uploadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
-                    print("progress:\(progress)")
-                    if let block = progressBlock {
-                        block(progress.fractionCompleted)
-                    }
-                }
-                upload.responseJSON(completionHandler: { (response) in
+        }, to: urlString, headers: HTTPHeaders(headers ?? [:]))
+            .responseJSON { (response) in
+                switch response.result {
+                case .failure(let error):
+                    completionCallBack(error._code, error, false)
+                case .success( _):
                     guard let statusCode = response.response?.statusCode,
                         let returnData = response.value as? [String: Any],let code = returnData["code"] as? Int else {
                             completionCallBack(response.response?.statusCode, response.error, false)
@@ -250,12 +196,16 @@ public class MFHttpManager {
                     } else {
                         completionCallBack(code, returnData, false)
                     }
-                    
-                })
+                }
+        }
+        .uploadProgress(queue: DispatchQueue.main) { (progress) in
+            print("progress:\(progress)")
+            if let block = progressBlock {
+                block(progress.fractionCompleted)
             }
         }
+        
     }
-    
     /// 泛型解析数据转换为特定类型
     public static func uploadWithSplitCommon<T:HandyJSON>(urlString: String,uniqueTag:String? = nil, requsetHeaders: [String:String]? = nil,paras:[String:Any]?,splitype:MFSplitType? = MFSplitType.img, fileExt: String, file: Data? = nil, responseType: T.Type, isShowHUD: Bool? = true, completionCallBack: @escaping (( _ statusCode: Int?, _ result: Any?, _ isSuccess: Bool) ->())){
         guard let splitType = splitype, let fileData = file else {
@@ -265,7 +215,7 @@ public class MFHttpManager {
         
         let totalSize = (fileData as NSData).length
         let blockCount = totalSize%SplitUploadMaxSize == 0 ? (totalSize/SplitUploadMaxSize):(totalSize/SplitUploadMaxSize+1)
-         var parameters:[String: Any] = [:]
+        var parameters:[String: Any] = [:]
         if let pa = paras{
             parameters = pa
         }
@@ -298,10 +248,11 @@ public class MFHttpManager {
             let bytesRead = inputStream.read(&myBuffer, maxLength: SplitUploadMaxSize)
             let block = Data(bytes: &myBuffer, count: bytesRead)
             let fileName = "\(String.randomStr(len: 19))_chunk_\(i)\(ext)"
- 
+            
             let paraInner = parameters
             workingGroup.enter()
             workingQueue.async {
+                
                 MFHttpManager.sharedInstance.uploadWithSplit(urlString: urlString, headers: requsetHeaders, parameters: paraInner, file: block, fileName: fileName,mimeType: priMimeType) { (code, result, isSuccess) in
                     if let json = result as? [String:Any],let jsonResult = json["data"] as? Int,let resultCode = code, resultCode == 0 {
                         
@@ -328,11 +279,11 @@ public class MFHttpManager {
                 }
             }
         }
-            
+        
     }
-     
+    
 }
- 
+
 extension MFHttpManager {
     
     public static func configAuthentication(cerfileName: String?,p12fileNameAndPwd: [String:String]?) {
@@ -351,6 +302,59 @@ extension MFHttpManager {
     
 }
 
+extension MFHttpManager {
+    
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        if !MFHttpManager.enableHttps {
+            completionHandler(.useCredential, nil)
+        }
+        //认证服务器（这里不使用服务器证书认证，只需地址是我们定义的几个地址即可信任）
+        if challenge.protectionSpace.authenticationMethod
+            == NSURLAuthenticationMethodServerTrust
+        {
+            print("服务器认证！")
+            //                let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+            //                return (.useCredential, credential)
+            let serverTrust:SecTrust = challenge.protectionSpace.serverTrust!
+            let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0)!
+            let remoteCertificateData
+                = CFBridgingRetain(SecCertificateCopyData(certificate))!
+            let cerPath = Bundle.main.path(forResource: MFHttpManager.trustFileNameOfCer, ofType: "cer")!
+            let cerUrl = URL(fileURLWithPath:cerPath)
+            let localCertificateData = try! Data(contentsOf: cerUrl)
+            
+            if (remoteCertificateData.isEqual(localCertificateData) == true) {
+                let credential = URLCredential(trust: serverTrust)
+                challenge.sender?.use(credential, for: challenge)
+                completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!));
+            } else {
+                completionHandler(.cancelAuthenticationChallenge, nil)
+            }
+        }//认证客户端证书
+        else if challenge.protectionSpace.authenticationMethod
+            == NSURLAuthenticationMethodClientCertificate {
+            print("客户端证书认证！")
+            //获取客户端证书相关信息
+            if let identityAndTrust:IdentityAndTrust = self.extractIdentity() {
+                let urlCredential:URLCredential = URLCredential(
+                    identity: identityAndTrust.identityRef,
+                    certificates: identityAndTrust.certArray as? [AnyObject],
+                    persistence: URLCredential.Persistence.forSession);
+                
+                completionHandler(.useCredential, urlCredential);
+            } else {
+                completionHandler(.cancelAuthenticationChallenge, nil)
+            }
+        }  else { // 其它情况（不接受认证）
+            print("其它情况（不接受认证）")
+            completionHandler(.cancelAuthenticationChallenge, nil)
+        }
+        
+    }
+    
+}
+
 extension String{
     static let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     public static func randomStr(len : Int) -> String{
@@ -362,3 +366,4 @@ extension String{
         return ranStr
     }
 }
+
