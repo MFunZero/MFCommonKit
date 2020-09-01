@@ -11,13 +11,7 @@ Pod::Spec.new do |s|
   s.version          = '0.1.5'
   s.summary          = 'common tools, 已适配Alamofir5.0'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = "公共组件"
+  s.description      = "公共组件, 网络请求、扩展类、HUD 等"
 
   s.homepage         = 'https://github.com/MFunzero/MFCommonKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
