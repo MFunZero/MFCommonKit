@@ -14,6 +14,21 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72AB6ADC8F5AEDE72E32E5BE /* Pods_MFSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37A3B458C66585AAF4D4811 /* Pods_MFSession.framework */; };
+		7329400724FE2F0D00D8A3D0 /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF624FE2F0D00D8A3D0 /* BaseCollectionView.swift */; };
+		7329400824FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF724FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift */; };
+		7329400924FE2F0D00D8A3D0 /* SKCommonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF824FE2F0D00D8A3D0 /* SKCommonCollectionView.swift */; };
+		7329400A24FE2F0D00D8A3D0 /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF924FE2F0D00D8A3D0 /* BaseNavController.swift */; };
+		7329400B24FE2F0D00D8A3D0 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FFA24FE2F0D00D8A3D0 /* BaseTabBarController.swift */; };
+		7329400C24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FFC24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift */; };
+		7329400D24FE2F0D00D8A3D0 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FFD24FE2F0D00D8A3D0 /* BaseTableViewCell.swift */; };
+		7329400E24FE2F0D00D8A3D0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FFE24FE2F0D00D8A3D0 /* BaseViewController.swift */; };
+		7329400F24FE2F0D00D8A3D0 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FFF24FE2F0D00D8A3D0 /* BaseWebViewController.swift */; };
+		7329401024FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329400124FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift */; };
+		7329401124FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329400224FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift */; };
+		7329401224FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329400324FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift */; };
+		7329401324FE2F0D00D8A3D0 /* RoutePageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329400424FE2F0D00D8A3D0 /* RoutePageTool.swift */; };
+		7329401524FE2F0D00D8A3D0 /* SKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329400624FE2F0D00D8A3D0 /* SKWebViewController.swift */; };
+		7329401724FE32BD00D8A3D0 /* SKTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329401624FE32BC00D8A3D0 /* SKTheme.swift */; };
 		73B1E13A242CA63400122C4A /* star.zdz.la.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 73B1E139242CA08D00122C4A /* star.zdz.la.p12 */; };
 		73B1E13B242CA63600122C4A /* star.zdz.la.cer in Resources */ = {isa = PBXBuildFile; fileRef = 73B1E138242CA08700122C4A /* star.zdz.la.cer */; };
 		73F66E67242DCEB4005B7374 /* StringCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F66E66242DCEB4005B7374 /* StringCustom.swift */; };
@@ -71,6 +86,21 @@
 		607FACE51AFB9204008FA782 /* MFCommonKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MFCommonKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		73293FF624FE2F0D00D8A3D0 /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
+		73293FF724FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		73293FF824FE2F0D00D8A3D0 /* SKCommonCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCommonCollectionView.swift; sourceTree = "<group>"; };
+		73293FF924FE2F0D00D8A3D0 /* BaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
+		73293FFA24FE2F0D00D8A3D0 /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		73293FFC24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabelAdapter.swift; sourceTree = "<group>"; };
+		73293FFD24FE2F0D00D8A3D0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		73293FFE24FE2F0D00D8A3D0 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		73293FFF24FE2F0D00D8A3D0 /* BaseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
+		7329400124FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCommonInfoAvatarControl.swift; sourceTree = "<group>"; };
+		7329400224FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCommonInfoItemControl.swift; sourceTree = "<group>"; };
+		7329400324FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGradenInfoItemControl.swift; sourceTree = "<group>"; };
+		7329400424FE2F0D00D8A3D0 /* RoutePageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePageTool.swift; sourceTree = "<group>"; };
+		7329400624FE2F0D00D8A3D0 /* SKWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKWebViewController.swift; sourceTree = "<group>"; };
+		7329401624FE32BC00D8A3D0 /* SKTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTheme.swift; sourceTree = "<group>"; };
 		73B1E138242CA08700122C4A /* star.zdz.la.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = star.zdz.la.cer; sourceTree = "<group>"; };
 		73B1E139242CA08D00122C4A /* star.zdz.la.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = star.zdz.la.p12; sourceTree = "<group>"; };
 		73F66E66242DCEB4005B7374 /* StringCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCustom.swift; sourceTree = "<group>"; };
@@ -143,6 +173,8 @@
 		607FACD21AFB9204008FA782 /* Example for MFCommonKit */ = {
 			isa = PBXGroup;
 			children = (
+				7329401624FE32BC00D8A3D0 /* SKTheme.swift */,
+				73293FF424FE2F0D00D8A3D0 /* Base */,
 				73B1E139242CA08D00122C4A /* star.zdz.la.p12 */,
 				73B1E138242CA08700122C4A /* star.zdz.la.cer */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -190,6 +222,51 @@
 				288C68864639B9D7ECF21F66 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		73293FF424FE2F0D00D8A3D0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				73293FF524FE2F0D00D8A3D0 /* BaseCollectionView */,
+				73293FF924FE2F0D00D8A3D0 /* BaseNavController.swift */,
+				73293FFA24FE2F0D00D8A3D0 /* BaseTabBarController.swift */,
+				73293FFB24FE2F0D00D8A3D0 /* BaseTableView */,
+				73293FFE24FE2F0D00D8A3D0 /* BaseViewController.swift */,
+				73293FFF24FE2F0D00D8A3D0 /* BaseWebViewController.swift */,
+				7329400024FE2F0D00D8A3D0 /* Common */,
+				7329400424FE2F0D00D8A3D0 /* RoutePageTool.swift */,
+				7329400624FE2F0D00D8A3D0 /* SKWebViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		73293FF524FE2F0D00D8A3D0 /* BaseCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				73293FF624FE2F0D00D8A3D0 /* BaseCollectionView.swift */,
+				73293FF724FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift */,
+				73293FF824FE2F0D00D8A3D0 /* SKCommonCollectionView.swift */,
+			);
+			path = BaseCollectionView;
+			sourceTree = "<group>";
+		};
+		73293FFB24FE2F0D00D8A3D0 /* BaseTableView */ = {
+			isa = PBXGroup;
+			children = (
+				73293FFC24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift */,
+				73293FFD24FE2F0D00D8A3D0 /* BaseTableViewCell.swift */,
+			);
+			path = BaseTableView;
+			sourceTree = "<group>";
+		};
+		7329400024FE2F0D00D8A3D0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7329400124FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift */,
+				7329400224FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift */,
+				7329400324FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		73F66E74242DFB78005B7374 /* MFSession */ = {
@@ -387,13 +464,21 @@
 				"${PODS_ROOT}/Target Support Files/Pods-MFCommonKit_Example/Pods-MFCommonKit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MFCommonKit/MFCommonKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/SHFullscreenPopGestureSwift/SHFullscreenPopGestureSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MFCommonKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHFullscreenPopGestureSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -473,9 +558,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7329400B24FE2F0D00D8A3D0 /* BaseTabBarController.swift in Sources */,
+				7329400824FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift in Sources */,
+				7329400E24FE2F0D00D8A3D0 /* BaseViewController.swift in Sources */,
+				7329401024FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				7329400724FE2F0D00D8A3D0 /* BaseCollectionView.swift in Sources */,
+				7329401524FE2F0D00D8A3D0 /* SKWebViewController.swift in Sources */,
 				73F66E67242DCEB4005B7374 /* StringCustom.swift in Sources */,
+				7329400F24FE2F0D00D8A3D0 /* BaseWebViewController.swift in Sources */,
+				7329401324FE2F0D00D8A3D0 /* RoutePageTool.swift in Sources */,
+				7329400A24FE2F0D00D8A3D0 /* BaseNavController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				7329400C24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift in Sources */,
+				7329401124FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift in Sources */,
+				7329401724FE32BD00D8A3D0 /* SKTheme.swift in Sources */,
+				7329400D24FE2F0D00D8A3D0 /* BaseTableViewCell.swift in Sources */,
+				7329400924FE2F0D00D8A3D0 /* SKCommonCollectionView.swift in Sources */,
+				7329401224FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,7 +851,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shanxidongda.SKEdu.MFSession;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.MFCommonKit-Example.MFSession";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -786,7 +886,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shanxidongda.SKEdu.MFSession;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.MFCommonKit-Example.MFSession";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

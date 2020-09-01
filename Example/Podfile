@@ -6,11 +6,13 @@ use_frameworks!
 target 'MFCommonKit_Example' do
   pod 'MFCommonKit', :path => '../../MFCommonKit'
 #  pod 'Alamofire', '~> 5.0'
-  pod 'HandyJSON'
+  pod 'HandyJSON', '= 5.0.2-beta'
+  pod 'SHFullscreenPopGestureSwift'
+  pod 'MJRefresh'
 
   target 'MFCommonKit_Tests' do
     inherit! :search_paths
-
+    
     
   end
   target 'MFSession' do

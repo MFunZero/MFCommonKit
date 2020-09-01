@@ -1,14 +1,14 @@
 //
 //  NSObjectExtension.swift
-//  SKEdu
+//  Base
 //
-//  Created by iOS开发 on 2019/6/4.
-//  Copyright © 2019 shanxidongda. All rights reserved.
+//  Created by MFun on 2019/6/4.
+//  Copyright © 2019 MFun. All rights reserved.
 //
 
 import Foundation
 
-extension NSObject {    
+public extension NSObject {    
     func getValueOfProperty(property: String) -> AnyObject? {
         let allPropeyties = self.getAllPropertys()
         if allPropeyties.contains(property) {

@@ -8,20 +8,20 @@
 
 import UIKit
 
-extension UIButton {
+public extension UIButton {
     
     func adjustTitleRight() {
         guard let titleLabel = self.titleLabel, let img = self.imageView?.image, let text = self.currentTitle else { return }
-//        if text.count > 5 {
-//            let subString = String(text.prefix(5))
-//            self.setTitle("\(subString)...", for: UIControl.State.selected)
-//        } else {
-//            self.setTitle(text, for: UIControl.State.selected)
-//        }
-        let width = (text as NSString).size(withAttributes: [NSAttributedString.Key.font : titleLabel.font!]).width
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -img.size.width, bottom: 0, right: img.size.width)
+        //        if text.count > 5 {
+        //            let subString = String(text.prefix(5))
+        //            self.setTitle("\(subString)...", for: UIControl.State.selected)
+        //        } else {
+        //            self.setTitle(text, for: UIControl.State.selected)
+        //        }
+        let width = (text as NSString).size(withAttributes: [NSAttributedString.Key.font : titleLabel.font ?? UIFont.sk_font(size: 14)]).width
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -img.size.width-5, bottom: 0, right: img.size.width)
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: width, bottom: 0, right: -width)
-    }
+    } 
     
     convenience init(frame: CGRect? = CGRect.init(), normalTitle: String? = nil,font:UIFont = UIFont.sk_font(size: 16), normalTitleColor:UIColor? = .black ,backColor:UIColor? = .white,selectedTitleColor:UIColor? = .black, selectedTitle: String? = nil ,cornerRadiu: CGFloat? = 0,backImage: UIImage? = nil,target:Any? = nil,action: Selector? = nil) {
         self.init()
@@ -86,7 +86,7 @@ class XLLayoutButton: UIButton {
             layoutIfNeeded()
         }
     }
-   
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         titleLabel?.sizeToFit()

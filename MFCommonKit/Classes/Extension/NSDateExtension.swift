@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-extension NSDate {    
+public extension NSDate {    
     /// 获取当前 秒级 时间戳 - 10位
     var timeStamp : String {
         let timeInterval: TimeInterval = self.timeIntervalSince1970

@@ -10,22 +10,22 @@ import UIKit
 // 主题字体
 //let HeitiSC = "Heiti SC"
 /// 中号
-let PingFangSCMedium = "PingFangSC-Medium"
+public let PingFangSCMedium = "PingFangSC-Medium"
 /// 常规体 ->  默认标记为苹果默认字体
-let PingFangSCRegular = "PingFang-SC-Regular"
+public let PingFangSCRegular = "PingFang-SC-Regular"
 ///  英文字体
 //let DINCondensedBold = "DINCondensed-Bold"
 //let HelveticaBold = "Helvetica-Bold"      // 英文粗体
-let PingFangTCLight = "PingFangTC-Light" // 极细
+public let PingFangTCLight = "PingFangTC-Light" // 极细
 //let Helvetica = "Helvetica" // 极细
-let PingFangSCSemibold = "PingFangSC-Semibold" // 巨粗
+public let PingFangSCSemibold = "PingFangSC-Semibold" // 巨粗
 
 //16
 //12
 //10
 
 // MARK: - 根据机型不同改变系统字体大小
-extension UIFont {
+public extension UIFont {
     
     class func sk_font(size: UInt32, name: String = PingFangSCRegular) -> UIFont {    
         var newSize:CGFloat = CGFloat(size)
@@ -44,9 +44,9 @@ extension UIFont {
     class func skLogAllFontName(){
         let fontAll = UIFont.familyNames
         for sub in fontAll {
-            print("字体库----\(sub)")
+            SKLog("字体库----\(sub)")
             let subTitle = UIFont.fontNames(forFamilyName: sub)
-            print("字体-----\(subTitle)")
+            SKLog("字体-----\(subTitle)")
         }
     }
     

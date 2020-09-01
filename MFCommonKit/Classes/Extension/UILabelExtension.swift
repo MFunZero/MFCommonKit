@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     
     /// 添加便利构造函数
     convenience init(frame: CGRect = CGRect.init(),title: String? = nil,font: UIFont,titleColor: UIColor = .black,backColor: UIColor? = .clear,alignment: NSTextAlignment = .left) {
@@ -21,14 +21,13 @@ extension UILabel {
         self.textAlignment  = alignment
     }
 
-    open override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         let fontSize = self.font.pointSize
         self.font = UIFont.sk_font(size: UInt32(fontSize), name: PingFangSCRegular)
     }
     
-    @available(iOS 13.0, *)
-    func underline(color: UIColor = .link) {
+    func underline(color: UIColor = UIColor.sk_hexColor("#E8E8E8")) {
         
         if let textString = self.text {
             let attributedString = NSMutableAttributedString(string: textString) 

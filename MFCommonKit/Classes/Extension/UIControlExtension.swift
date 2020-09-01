@@ -1,15 +1,15 @@
 //
 //  UIControlExtension.swift
-//  SKEdu
+//  Base
 //
-//  Created by iOS开发 on 2019/6/13.
-//  Copyright © 2019 shanxidongda. All rights reserved.
+//  Created by MFun on 2019/6/13.
+//  Copyright © 2019 MFun. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class EventsWrapper: NSObject {
+public class EventsWrapper: NSObject {
     var events: UIControl.Event?
     var handler: ((AnyObject?) -> ())?    
     init(handler:@escaping ((AnyObject?) -> ()),events:UIControl.Event ) {
@@ -26,7 +26,7 @@ class EventsWrapper: NSObject {
     
 }
 
-extension UIControl {    
+public extension UIControl {    
     static var EventsMapKey: String = "EventsMapKey"    
     func getEventsMap() -> NSMutableDictionary {
         var eventsMap: NSMutableDictionary? = objc_getAssociatedObject(self, UIControl.EventsMapKey) as? NSMutableDictionary

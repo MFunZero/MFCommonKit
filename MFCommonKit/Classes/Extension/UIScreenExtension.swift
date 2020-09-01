@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIScreen {    
+public extension UIScreen {    
     class func sk_ScreenWidth() -> CGFloat {
         return UIScreen.main.bounds.width
     }

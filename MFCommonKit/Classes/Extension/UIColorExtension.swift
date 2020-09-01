@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIColor {    
+public extension UIColor {    
     /// 添加计算型属性生成随机颜色
     class var ramdomColor: UIColor {
         return UIColor(R: arc4random_uniform(256),
@@ -21,7 +21,20 @@ extension UIColor {
                   green: CGFloat(G) / 255.0,
                   blue: CGFloat(B) / 255.0,
                   alpha: A)
-    }    
+    }
+     
+//    convenience init(light: UIColor, dark: UIColor) {
+//        if #available(iOS 13.0, *) {
+//            self.init(dynamicProvider: { (traits) in
+//                if traits.userInterfaceStyle == .dark {
+//                    return dark
+//                }
+//                return light
+//            })
+//        } else {
+//            return light
+//        }
+//    }
     /// 利用十六进制字符串构造颜色
     ///
     /// - Parameter hexString: 颜色十六进制字符

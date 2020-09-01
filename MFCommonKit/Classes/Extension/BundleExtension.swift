@@ -6,9 +6,9 @@
 //  Copyright © 2018年 simple. All rights reserved.
 //
 
-import Foundation 
+import Foundation
 
-extension Bundle {
+public extension Bundle {
     
     ///  取得命名空间
     var spaceName : String {
@@ -21,6 +21,17 @@ extension Bundle {
     /// 获取build号
     var appBuild :String {
          return object(forInfoDictionaryKey: kCFBundleVersionKey  as String) as? String ?? ""
+    }
+    
+    static func loadBundle(bundleName:String) -> Bundle? {
+        guard let url = Bundle.main.url(forResource: bundleName, withExtension: "bundle") else {
+            return nil
+        }
+        return Bundle(url: url)
+    }
+    
+    static func loadBundleAssets(withName name: String,bundleName: String?="SKIM.bundle") -> String{
+        return "\(bundleName!)/\(name)"
     }
     
 }

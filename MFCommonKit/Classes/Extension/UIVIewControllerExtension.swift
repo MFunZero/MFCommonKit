@@ -9,7 +9,7 @@
 import UIKit
 
 
-extension UIViewController {    
+public extension UIViewController {    
     /// 获取tabbar高度
     var sk_tabbarHeight: CGFloat {
         return self.tabBarController?.tabBar.bounds.height ?? 0

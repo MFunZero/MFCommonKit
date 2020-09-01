@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIAlertController {    
+public extension UIAlertController {    
     /// 点击空白处消失
     func blankDismiss(){
         
