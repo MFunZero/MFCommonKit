@@ -14,6 +14,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72AB6ADC8F5AEDE72E32E5BE /* Pods_MFSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37A3B458C66585AAF4D4811 /* Pods_MFSession.framework */; };
+		731FC22C2508A9A500C04B56 /* SKPreViewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731FC2292508A9A400C04B56 /* SKPreViewImageViewController.swift */; };
+		731FC22D2508A9A500C04B56 /* SKPreViewVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731FC22A2508A9A500C04B56 /* SKPreViewVideoViewController.swift */; };
+		731FC22E2508A9A500C04B56 /* SKVFPreViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731FC22B2508A9A500C04B56 /* SKVFPreViewViewController.swift */; };
 		7329400724FE2F0D00D8A3D0 /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF624FE2F0D00D8A3D0 /* BaseCollectionView.swift */; };
 		7329400824FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF724FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift */; };
 		7329400924FE2F0D00D8A3D0 /* SKCommonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73293FF824FE2F0D00D8A3D0 /* SKCommonCollectionView.swift */; };
@@ -86,6 +89,9 @@
 		607FACE51AFB9204008FA782 /* MFCommonKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MFCommonKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		731FC2292508A9A400C04B56 /* SKPreViewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPreViewImageViewController.swift; sourceTree = "<group>"; };
+		731FC22A2508A9A500C04B56 /* SKPreViewVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPreViewVideoViewController.swift; sourceTree = "<group>"; };
+		731FC22B2508A9A500C04B56 /* SKVFPreViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKVFPreViewViewController.swift; sourceTree = "<group>"; };
 		73293FF624FE2F0D00D8A3D0 /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		73293FF724FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		73293FF824FE2F0D00D8A3D0 /* SKCommonCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCommonCollectionView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,9 @@
 		607FACD21AFB9204008FA782 /* Example for MFCommonKit */ = {
 			isa = PBXGroup;
 			children = (
+				731FC2292508A9A400C04B56 /* SKPreViewImageViewController.swift */,
+				731FC22A2508A9A500C04B56 /* SKPreViewVideoViewController.swift */,
+				731FC22B2508A9A500C04B56 /* SKVFPreViewViewController.swift */,
 				7329401624FE32BC00D8A3D0 /* SKTheme.swift */,
 				73293FF424FE2F0D00D8A3D0 /* Base */,
 				73B1E139242CA08D00122C4A /* star.zdz.la.p12 */,
@@ -560,6 +569,8 @@
 			files = (
 				7329400B24FE2F0D00D8A3D0 /* BaseTabBarController.swift in Sources */,
 				7329400824FE2F0D00D8A3D0 /* BaseCollectionViewCell.swift in Sources */,
+				731FC22C2508A9A500C04B56 /* SKPreViewImageViewController.swift in Sources */,
+				731FC22D2508A9A500C04B56 /* SKPreViewVideoViewController.swift in Sources */,
 				7329400E24FE2F0D00D8A3D0 /* BaseViewController.swift in Sources */,
 				7329401024FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
@@ -568,6 +579,7 @@
 				73F66E67242DCEB4005B7374 /* StringCustom.swift in Sources */,
 				7329400F24FE2F0D00D8A3D0 /* BaseWebViewController.swift in Sources */,
 				7329401324FE2F0D00D8A3D0 /* RoutePageTool.swift in Sources */,
+				731FC22E2508A9A500C04B56 /* SKVFPreViewViewController.swift in Sources */,
 				7329400A24FE2F0D00D8A3D0 /* BaseNavController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				7329400C24FE2F0D00D8A3D0 /* BaseTabelAdapter.swift in Sources */,

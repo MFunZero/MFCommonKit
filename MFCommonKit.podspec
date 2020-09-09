@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.version          = '0.1.5'
   s.summary          = 'common tools, 已适配Alamofir5.0'
 
-  s.description      = "公共组件, 网络请求、扩展类、HUD 等"
+  s.description      = "公共组件, 网络请求、扩展类、HUD 等..."
 
   s.homepage         = 'https://github.com/MFunzero/MFCommonKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -53,6 +53,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'MFCommonKit/Classes/HUDTool/**/*' 
     ss.dependency 'MBProgressHUD'
     ss.dependency 'MFCommonKit/Extension'
+    ss.dependency 'MFCommonKit/Base'
   end
 
   s.subspec 'SegmentController' do |ss|

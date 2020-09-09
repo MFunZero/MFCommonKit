@@ -11,12 +11,12 @@ import Foundation
 extension UIImageView {
     
     func sk_setImage(urlString: String?,placeImage: UIImage?){
-        guard let urlStr = urlString,
-            let imageURL = URL(string: urlStr)  else {
-                image = placeImage
-                return
-                
-        }
+//        guard let urlStr = urlString,
+//            let imageURL = URL(string: urlStr)  else {
+//                image = placeImage
+//                return
+//                
+//        }
         
 //        self.sd_setImage(with: imageURL, placeholderImage: placeImage, options: SDWebImageOptions.cacheMemoryOnly, completed: nil)
         

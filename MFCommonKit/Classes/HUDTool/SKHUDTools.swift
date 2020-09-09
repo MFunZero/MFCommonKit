@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import MBProgressHUD
-import MFCommonKit
+import MBProgressHUD 
 
 
 public class SKHUDTools {    
