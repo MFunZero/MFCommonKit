@@ -2,8 +2,8 @@
 //  BaseCollectionView.swift
 //  SKEmployee
 //
-//  Created by MFun on 2019/8/13.
-//  Copyright © 2019 MFun. All rights reserved.
+//  Created by iOS开发 on 2019/8/13.
+//  Copyright © 2019 shanxidongda. All rights reserved.
 //
 
 import UIKit
@@ -11,14 +11,13 @@ import UIKit
 class BaseCollectionView: UICollectionView {
     
     /// 最大行数
-    @IBInspectable var maxRow: Int = Int.max
+    @IBInspectable var maxRow: Int = 4
     @IBInspectable var sep: CGFloat = 10
     @IBInspectable var maxCol: Int = 4
-//    @IBInspectable var itemH: CGFloat = 120
-    @IBInspectable var scaleWH: CGFloat = 0.75
+    @IBInspectable var itemH: CGFloat = 120
     @IBInspectable var isCustom: Bool = false
     // 是否根据数据源自动更新高度
-    @IBInspectable var shouldLayoutH: Bool = false
+    @IBInspectable var shouldLayoutH: Bool = true
     @IBOutlet weak var membersH: NSLayoutConstraint!
     
     // 是否编辑状态
@@ -63,9 +62,9 @@ class BaseCollectionView: UICollectionView {
         super.layoutSubviews()
         
         guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout, isCustom, dataArray.count > 0 else { return  }
-        let sectionInset = layout.sectionInset
-        let width = (self.width-CGFloat(maxCol-1) * sep - sectionInset.left - sectionInset.right) / CGFloat(maxCol)
-        var height = width/scaleWH
+        let contentInset = self.contentInset
+        let width = (self.width-CGFloat(maxCol-1) * sep - contentInset.left - contentInset.right) / CGFloat(maxCol)
+        var height = itemH
         layout.itemSize = CGSize(width: width, height: height)
         layout.minimumLineSpacing = sep
         
@@ -108,6 +107,8 @@ extension BaseCollectionView: UICollectionViewDataSource, UICollectionViewDelega
         cell.isEditing = isEditing
         if multiSelectedIndex.contains(indexPath) {
             cell.isSelectedCustom = true
+        } else {
+            cell.isSelectedCustom = false
         }
         cell.model = dataArray[indexPath.row]
         if let block = self.cellBlock {
@@ -124,7 +125,7 @@ extension BaseCollectionView: UICollectionViewDataSource, UICollectionViewDelega
             multiSelectedIndex.append(indexPath)
         }
         cell.isSelectedCustom = true
-//        collectionView.reloadItems(at: [indexPath])
+        //        collectionView.reloadItems(at: [indexPath])
         if let block = self.selectedBlock {
             block(model, indexPath)
         }
@@ -135,10 +136,16 @@ extension BaseCollectionView: UICollectionViewDataSource, UICollectionViewDelega
             return
         }
         cell.isSelectedCustom = false
+        //        if multiSelectedIndex.contains(indexPath) {
+        //            let subArray = multiSelectedIndex.drop { (index) -> Bool in
+        //                return index.compare(indexPath) == .orderedSame
+        //            }
+        //            multiSelectedIndex = Array(subArray)
+        //        }
         if let k = multiSelectedIndex.firstIndex(of: indexPath) {
             multiSelectedIndex.remove(at: k)
         }
-//        collectionView.reloadItems(at: [indexPath])
+        //        collectionView.reloadItems(at: [indexPath])
         if let block = self.deselectedBlock {
             block(model, indexPath)
         }

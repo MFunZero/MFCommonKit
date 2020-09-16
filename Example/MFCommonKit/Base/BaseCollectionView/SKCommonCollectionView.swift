@@ -3,7 +3,7 @@
 //  KindergartenTApplication
 //
 //  Created by iOS-dev on 2020/3/18.
-//  Copyright © 2020 iMFun.com. All rights reserved.
+//  Copyright © 2020 MFun. All rights reserved.
 //
 
 import UIKit
@@ -21,9 +21,12 @@ class SKCommonCollectionView: UICollectionView {
     
     // 是否根据数据源自动更新高度
     @IBInspectable var shouldLayoutH: Bool = false
+    // 自动更新高度，最大高度
+    @IBInspectable var maxLayoutH: CGFloat = CGFloat(MAXFLOAT)
     @IBOutlet weak var membersH: NSLayoutConstraint!
-    // 是否重新计算layout
-    @IBInspectable var layoutCustom: Bool = true
+
+    //所属控制器
+    weak var controller: UIViewController?
 
     // 是否编辑状态
     var isEditing: Bool = false {
@@ -33,10 +36,16 @@ class SKCommonCollectionView: UICollectionView {
         }
     }
     
+    /// 多sectionHeader时可用来控制header
+    var headerViewBlock: ((UIView, Int)->())?
+
     var selectedBlock: ((Any, IndexPath)->())?
     var deselectedBlock: ((Any, IndexPath)->())?
     var cellBlock: ((BaseCollectionViewCell, IndexPath)->())?
-    var headerViewUIBlock: ((UIView, IndexPath)->())?
+    // 多section是 row数量
+    var rowCountBlock: ((Int)->(Int))?
+    
+    var cellDeleteBlock: ((BaseCollectionViewCell, IndexPath)->())?
     
     var dataArray:[Any] = []
     // 根据dataArray的下标取值，
@@ -102,21 +111,29 @@ class SKCommonCollectionView: UICollectionView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout, layoutCustom else { return  }
+//         避免无cell时视图构造，造成出现数据时cell大小变化
+        guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return  }
         let sectionInset = layout.sectionInset
         let width = (self.width-CGFloat(maxCol-1) * sep - sectionInset.left - sectionInset.right) / CGFloat(maxCol)
-        //        layout.estimatedItemSize = CGSize(width: width, height: width/scaleWH)
+//        layout.estimatedItemSize = CGSize(width: width, height: width/scaleWH)
         layout.itemSize = CGSize(width: width, height: width/scaleWH)
         layout.minimumLineSpacing = sep
         //        layout.headerReferenceSize = UICollectionViewFlowLayout.automaticSize
         //        layout.footerReferenceSize = UICollectionViewFlowLayout.automaticSize
+         
         guard shouldLayoutH else { return }
+        var shouldH = self.contentSize.height
+        if self.contentSize.height >= maxLayoutH {
+            shouldH = maxLayoutH
+            self.isScrollEnabled = true
+        } else {
+            self.isScrollEnabled = false
+        }
         guard let hConstraints = self.membersH else {
-            self.height = self.contentSize.height
+            self.height = shouldH
             return
         }
-        hConstraints.constant = self.contentSize.height
+        hConstraints.constant = shouldH
     }
     
 }
@@ -139,19 +156,17 @@ extension SKCommonCollectionView: UICollectionViewDataSource, UICollectionViewDe
             if showCommonHeader {
                 if  section == 0 {
                     return 0
+                } else if let sectionArray = dataArray[section-1] as? [Any] {
+                    return sectionArray.count
                 }
-                // MARK: TODO
-                return 1
-//                else if let sectionArray = dataArray[section-1] as? SKLibraryListModel {
-//                    return sectionArray.list.count
-//                } else {
-//                    if let sectionArray = dataArray[section-1] as? [Any] {
-//                        return sectionArray.count
-//                    }
-//                }
             } else if let sectionArray = dataArray[section] as? [Any] {
                 return sectionArray.count
             }
+            // 若使用外部计数回调
+            if let block = rowCountBlock {
+                return block(section)
+            }
+            
             return 0
         } else {
             return dataArray.count
@@ -162,6 +177,7 @@ extension SKCommonCollectionView: UICollectionViewDataSource, UICollectionViewDe
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BaseCollectionViewCell else {
             return BaseCollectionViewCell()
         }
+        cell.controller = self.controller
         cell.isEditing = isEditing
         if multiSelectedIndex.contains(indexPath) {
             cell.isSelectedCustom = true
@@ -170,16 +186,20 @@ extension SKCommonCollectionView: UICollectionViewDataSource, UICollectionViewDe
         }
         if multiSections {
             if showCommonHeader {
-                // MARK: TODO
-//                if indexPath.section != 0, let sectionArray = dataArray[indexPath.section-1] as? SKLibraryListModel {
-//                    cell.model = sectionArray.list[indexPath.row]
-//                }
+                if indexPath.section != 0, let sectionArray = dataArray[indexPath.section-1] as? [Any] {
+                    cell.model = sectionArray[indexPath.row]
+                }
             } else if let sectionArray = dataArray[indexPath.section] as? [Any] {
                 cell.model = sectionArray[indexPath.row]
             }
         } else {
             cell.model = dataArray[indexPath.row]
         }
+        
+        if let block = self.cellDeleteBlock {
+            cell.cellDeleteBlock = block
+        }
+        
         if let block = self.cellBlock {
             block(cell, indexPath)
         }
@@ -192,8 +212,8 @@ extension SKCommonCollectionView: UICollectionViewDataSource, UICollectionViewDe
             return header
         }
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: kind, for: indexPath)
-        if let block = headerViewUIBlock {
-            block(header, indexPath)
+        if let block = headerViewBlock{
+            block(header, indexPath.section)
         }
         return header
         

@@ -34,6 +34,7 @@
 		7329401724FE32BD00D8A3D0 /* SKTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329401624FE32BC00D8A3D0 /* SKTheme.swift */; };
 		73B1E13A242CA63400122C4A /* star.zdz.la.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 73B1E139242CA08D00122C4A /* star.zdz.la.p12 */; };
 		73B1E13B242CA63600122C4A /* star.zdz.la.cer in Resources */ = {isa = PBXBuildFile; fileRef = 73B1E138242CA08700122C4A /* star.zdz.la.cer */; };
+		73EC730D2511DB72004C5F19 /* SKClassesSelectedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC730C2511DB72004C5F19 /* SKClassesSelectedAlertView.swift */; };
 		73F66E67242DCEB4005B7374 /* StringCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F66E66242DCEB4005B7374 /* StringCustom.swift */; };
 		73F66E77242DFB78005B7374 /* MFSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F66E75242DFB78005B7374 /* MFSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73F66E7A242DFB78005B7374 /* MFSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F66E73242DFB78005B7374 /* MFSession.framework */; };
@@ -109,6 +110,7 @@
 		7329401624FE32BC00D8A3D0 /* SKTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTheme.swift; sourceTree = "<group>"; };
 		73B1E138242CA08700122C4A /* star.zdz.la.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = star.zdz.la.cer; sourceTree = "<group>"; };
 		73B1E139242CA08D00122C4A /* star.zdz.la.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = star.zdz.la.p12; sourceTree = "<group>"; };
+		73EC730C2511DB72004C5F19 /* SKClassesSelectedAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKClassesSelectedAlertView.swift; sourceTree = "<group>"; };
 		73F66E66242DCEB4005B7374 /* StringCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCustom.swift; sourceTree = "<group>"; };
 		73F66E6C242DFB1F005B7374 /* MFSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFSession.swift; sourceTree = "<group>"; };
 		73F66E73242DFB78005B7374 /* MFSession.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MFSession.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,6 +273,7 @@
 		7329400024FE2F0D00D8A3D0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				73EC730C2511DB72004C5F19 /* SKClassesSelectedAlertView.swift */,
 				7329400124FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift */,
 				7329400224FE2F0D00D8A3D0 /* SKCommonInfoItemControl.swift */,
 				7329400324FE2F0D00D8A3D0 /* SKGradenInfoItemControl.swift */,
@@ -573,6 +576,7 @@
 				731FC22D2508A9A500C04B56 /* SKPreViewVideoViewController.swift in Sources */,
 				7329400E24FE2F0D00D8A3D0 /* BaseViewController.swift in Sources */,
 				7329401024FE2F0D00D8A3D0 /* SKCommonInfoAvatarControl.swift in Sources */,
+				73EC730D2511DB72004C5F19 /* SKClassesSelectedAlertView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				7329400724FE2F0D00D8A3D0 /* BaseCollectionView.swift in Sources */,
 				7329401524FE2F0D00D8A3D0 /* SKWebViewController.swift in Sources */,

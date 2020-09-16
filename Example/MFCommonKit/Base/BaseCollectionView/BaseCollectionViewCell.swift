@@ -2,7 +2,7 @@
 //  BaseCollectionViewCell.swift
 //  SKEmployee
 //
-//  Created by MFun on 2019/8/13.
+//  Created by iOS开发 on 2019/8/13.
 //  Copyright © 2019 MFun. All rights reserved.
 //
 
@@ -22,11 +22,15 @@ class BaseCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var cellDeleteBlock: ((BaseCollectionViewCell, IndexPath)->())?
+    
     var model: Any? {
         didSet{
             updateModel()
         }
     }
+    
+    weak var controller: UIViewController?
     
     override var reuseIdentifier: String? { return "cell" }
 
